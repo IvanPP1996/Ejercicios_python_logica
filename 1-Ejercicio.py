@@ -1,3 +1,6 @@
+import math
+
+
 #1)Escribe un programa que muestre por consola (con un print) los números de 1 a 100 (ambos incluidos y con un salto de línea entre cada impresión), sustituyendo los siguientes:
     #* - Múltiplos de 3 por la palabra "fizz".
     #* - Múltiplos de 5 por la palabra "buzz".
@@ -103,3 +106,69 @@ def ingreso_opcion ():
     area_poligono(opcion)
 
 #ingreso_opcion()
+
+
+#6)Crea un programa que invierta el orden de una cadena de texto sin usar funciones propias del lenguaje que lo hagan de forma automática.
+# * - Si le pasamos "Hola mundo" nos retornaría "odnum aloH"
+
+#frase = input('Ingresa una palabra o frase: ')
+#frase_al_reves = ''
+#
+#for palabra in range (len(frase)-1,-1,-1):
+#    frase_al_reves += frase[palabra]
+#print(frase_al_reves)
+
+
+#7) Escribe una función que reciba un texto y retorne verdadero o falso (Boolean) según sean o no palíndromos.
+# * Un Palíndromo es una palabra o expresión que es igual si se lee de izquierda a derecha que de derecha a izquierda.
+# * NO se tienen en cuenta los espacios, signos de puntuación y tildes.
+# * Ejemplo: Ana lleva al oso la avellana.
+
+def palindromo (palabra):
+    #Invierto la cadena con slicing[::-1]
+    if palabra == palabra[::-1]:
+        print(f'la palabra {palabra} digitada SI es palíndromo')
+    else:
+        print(f'la palabra {palabra} digitada NO es palíndromo')
+
+def ingreso_palabra ():
+    palabra = input('Ingrese una palabra: ')
+    palabra = palabra.lower()
+    palindromo(palabra)
+
+#ingreso_palabra()
+
+
+#8)Escribe una función que calcule y retorne el factorial de un número dado de forma recursiva.
+def factorial (numero):
+    total = 1
+    for digito in range (1,numero+1,1):
+        total *= digito
+    print(f'El factorial de {numero} es = {total}')
+
+def ingreso_numero():
+    numero = int(input('Ingrese un número: '))
+    factorial(numero)
+    
+#ingreso_numero()
+
+#9)Escribe una función que calcule si un número dado es un número de Armstrong (o también llamado narcisista).
+# * Si no conoces qué es un número de Armstrong, debes buscar información al respecto (Ejm. 153 = 1^3+5^3+3^3 = 1+125+27 = 153)
+
+def numero_armstrong (numero):
+    total = 0
+    #Convertimos el numero a string luego lo separamos y despues lo convertimos a numeros y lo dejamos en una lista
+    numeros_separados = [int(digito) for digito in str(numero)]
+    for num in numeros_separados:
+        total += math.pow(num, len(numeros_separados))
+    total = int(total)
+    if total == numero:
+        print(f'El número {numero} SI es Armstrong')
+    else:
+        print(f'El número {numero} NO es Armstrong')
+        
+def insertar_numero ():
+    numero = int(input('Inserte un número: '))
+    numero_armstrong(numero)
+
+#insertar_numero()
