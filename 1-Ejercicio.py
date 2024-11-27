@@ -152,6 +152,7 @@ def ingreso_numero():
     
 #ingreso_numero()
 
+
 #9)Escribe una función que calcule si un número dado es un número de Armstrong (o también llamado narcisista).
 # * Si no conoces qué es un número de Armstrong, debes buscar información al respecto (Ejm. 153 = 1^3+5^3+3^3 = 1+125+27 = 153)
 
@@ -172,3 +173,127 @@ def insertar_numero ():
     numero_armstrong(numero)
 
 #insertar_numero()
+
+
+#10)Crea una función que reciba un String de cualquier tipo y se encargue de poner en mayúscula la primera letra de cada palabra.
+# * - No se pueden utilizar operaciones del lenguaje que lo resuelvan directamente.
+def letra_mayuscula (cadena):
+    #Convierto la cadena de caracteres en lista
+    cadena_lista = cadena.split()
+    for palabra in range (0,len(cadena_lista),1):
+        cadena_lista[palabra] = cadena_lista[palabra][0].capitalize() + cadena_lista[palabra][1:]
+    cadena_lista = " ".join(cadena_lista)
+    print(cadena_lista)
+
+def pedir_palabra ():
+    cadena = input('Ingresa una frase: ')
+    letra_mayuscula(cadena)
+
+#pedir_palabra();
+
+
+#11) Crea un programa que cuente cuantas veces se repite cada palabra y que muestre el recuento final de todas ellas.
+# * - Los signos de puntuación no forman parte de la palabra.
+# * - Una palabra es la misma aunque aparezca en mayúsculas y minúsculas.
+# * - No se pueden utilizar funciones propias del lenguaje que lo resuelvan automáticamente.
+
+#frase = input('Ingrese una frase: ')
+#frase = frase.lower()
+#frase = frase.split()
+#
+##Listas de palabras y cuantas hay
+#lista_palabras = []
+#conteo_palabras = []
+#
+##Recorremos la frase que ahora es una lista 
+#for palabra in frase:
+#    #recorremos y verificamos si la palabra esta en lista_palabras y aumentamos su contador de acuerdo al indice en conteno_palabras
+#    if palabra in lista_palabras:
+#        #Aplicamos la opcion index() para encontrar la palabra en la lista y devuelve su indice posicion donde se encunetra la palabra 
+#        indice = lista_palabras.index(palabra)
+#        conteo_palabras[indice] += 1
+#    else:
+#        #Si no esta la plabra la agregamos como nueva y un aumento de la variable
+#        lista_palabras.append(palabra)
+#        conteo_palabras.append(1)
+#
+##Recorremos la lista_palabras y conteo de plabras para saber cuantos datos hay en cada uno 
+#for repeticion in range (0, len(lista_palabras)):
+#    print(f'{lista_palabras[repeticion]} = {conteo_palabras[repeticion]}')
+
+
+#12) Crea un programa se encargue de transformar un número decimal a binario sin utilizar funciones propias del lenguaje que lo hagan directamente.
+
+#numero = int(input('Ingresa un número decimal: '))
+#lista_binario = []
+#
+#while numero > 0:
+#    resul = numero % 2
+#    #Agrego el residuo a la lista_binario
+#    lista_binario.append(resul)
+#    numero //= 2
+#lista_binario.reverse()
+#
+##Muestro de el número de lista (lista_binario) a un numero entero
+#num = 0
+#for digito in lista_binario:
+#    num = num * 10 + digito
+#
+#print(num)
+
+
+#13)Crea una función que reciba dos cadenas como parámetro (str1, str2) e imprima otras dos cadenas como salida (out1, out2).
+# * - out1 contendrá todos los caracteres presentes en la str1 pero NO estén presentes en str2.
+# * - out2 contendrá todos los caracteres presentes en la str2 pero NO estén presentes en str1.
+def cadenas_parametros (cadena1, cadena2):
+    resul = True
+    for caracter1 in cadena1:
+        for caracter2 in cadena2:
+            if caracter1 == caracter2:
+                resul = False
+                break
+        if not resul:
+            break
+    if resul == False:
+        return f'La cadenas tienen caracteres similares por tal motivo no se pueden mostrar'
+    else:
+        return f'la cadena 1 tiene estos caracteres "{cadena1}" y las cadena 2 tiene estos otros caracteres "{cadena2}"'
+    
+def ingreso_cadenas ():
+    cadena1 = input('Ingrese la primera cadena de texto: ')
+    cadena2 = input('Ingrese la segunda cadena de texto: ')
+    cadenas_all = cadenas_parametros(cadena1, cadena2)
+    print(cadenas_all)
+    
+#ingreso_cadenas()
+
+
+#14) Crea un programa que sea capaz de transformar texto natural a código morse y viceversa.
+# * - Debe detectar automáticamente de qué tipo se trata y realizar la conversión.
+# * - En morse se soporta raya "—", punto ".", un espacio " " entre letras o símbolos y dos espacios entre palabras " ".
+# * - El alfabeto morse soportado será el mostrado en https://es.wikipedia.org/wiki/Código_morse.
+
+def codigo_morse(cadena):
+    alfabeto_morse = {
+        'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
+        'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..',
+        'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.',
+        'S': '...', 'T': '-', 'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-',
+        'Y': '-.--', 'Z': '--..', 
+        '1': '.----', '2': '..---', '3': '...--', '4': '....-', '5': '.....',
+        '6': '-....', '7': '--...', '8': '---..', '9': '----.', '0': '-----',
+        ' ': '/'
+    }
+    
+    # Convertir la cadena a mayúsculas
+    cadena = cadena.upper()
+    morse = []
+    
+    for caracter in cadena:
+        if caracter in alfabeto_morse:
+            morse.append(alfabeto_morse[caracter])
+    
+    #Convertimos la lista en string con los caracteres de código morse
+    return ' '.join(morse)
+
+#print(codigo_morse('Hola mundo'))
