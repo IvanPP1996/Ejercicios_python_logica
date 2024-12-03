@@ -1,4 +1,5 @@
 import math
+from datetime import datetime
 
 
 #1)Escribe un programa que muestre por consola (con un print) los números de 1 a 100 (ambos incluidos y con un salto de línea entre cada impresión), sustituyendo los siguientes:
@@ -297,3 +298,59 @@ def codigo_morse(cadena):
     return ' '.join(morse)
 
 #print(codigo_morse('Hola mundo'))
+
+
+#15) Crea un programa que comprueba si los paréntesis, llaves y corchetes de una expresión están equilibrados.
+# * - Equilibrado significa que estos delimitadores se abren y cieran en orden y de forma correcta.
+# * - Paréntesis, llaves y corchetes son igual de prioritarios. No hay uno más importante que otro.
+# * - Expresión balanceada: { [ a * ( c + d ) ] - 5 }
+# * - Expresión no balanceada: { a * ( c + d ) ] - 5 }
+
+def equilibrio(expresion):
+    condiciones = {
+        '(': ')',
+        '{': '}',
+        '[': ']'
+    }
+    lista = []
+
+    for caracter in expresion:
+        if caracter in condiciones:
+            lista.append(caracter)
+        elif caracter in condiciones.values():
+            if lista and condiciones[lista[-1]] == caracter:
+                lista.pop()
+            else:
+                return 'La expresión no está equilibrada'
+    if not lista:
+        return 'La expresión está equilibrada'
+    else:
+        return 'La expresión no está equilibrada'
+
+#print(equilibrio('{[a*(c+d)]-5}'))
+#print(equilibrio('{[a*c+d)]-5}'))
+
+
+#16)Crea una función que calcule y retorne cuántos días hay entre dos cadenas de texto que representen fechas.
+# * - Una cadena de texto que representa una fecha tiene el formato "dd/MM/yyyy".
+# * - La función recibirá dos String y retornará un Int.
+# * - La diferencia en días será absoluta (no importa el orden de las fechas).
+# * - Si una de las dos cadenas de texto no representa una fecha correcta se lanzará una excepción.
+
+def diferencia_dias (string1, string2):
+    try:
+        string1_for_fecha = datetime.strptime(string1, '%d/%m/%Y')
+        string2_for_fecha = datetime.strptime(string2, '%d/%m/%Y')
+    except:
+        return 'No ingreso las fechas en el formato correcto vuelva a intentarlo'
+
+    resta = (string1_for_fecha - string2_for_fecha).days
+    return f'La diferencia de dias entre {string1_for_fecha.date()} y {string2_for_fecha.date()} es de {int(abs(resta))} dias'
+
+def ingreso_fechas ():
+    string1 = input('Ingrese la primera fecha bajo el siguiente formato "dd/MM/yyyy": ')
+    string2 = input('Ingrese la segunda fecha bajo el siguiente formato "dd/MM/yyyy": ')
+    fechas_ingresadas = diferencia_dias (string1, string2)
+    return fechas_ingresadas
+
+#print(ingreso_fechas())
